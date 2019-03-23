@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 /**
@@ -19,15 +20,19 @@ public class Mecanum {
         this.leftTop = TL;
     }
     public void mecanumDrive(Gamepad gp) {
-        float x = (float)(Math.pow(gp.left_stick_x, 5));
-        float y = (float)(Math.pow(-gp.left_stick_y, 5));
-        float z = (float)(Math.pow(gp.right_stick_x, 5));
-
-        leftBottom.setPower(x - y - z);
-        leftTop.setPower(-x - y - z);
-        rightTop.setPower(-x + y - z);
-        rightBottom.setPower(x + y - z);
+        float x = (float)(Math.pow(gp.left_stick_y, 3));
+        float y = (float)(Math.pow(gp.left_stick_x, 3));
+        float z = (float)(Math.pow(gp.right_stick_x, 3));
+//        leftBottom.setPower(-x - y - z);
+//        leftTop.setPower(x - y - z);
+//        rightTop.setPower(-x - y + z);
+//        rightBottom.setPower(x - y + z);
+        leftBottom.setPower((x)+(y)+(-z));
+        leftTop.setPower((x)+(-y)+(-z));
+        rightBottom.setPower((-x)+(y)+(-z));
+        rightTop.setPower((-x)+(-y)+(-z));
     }
+
     public void stopMotors() {
         rightBottom.setPower(0);
         leftBottom.setPower(0);

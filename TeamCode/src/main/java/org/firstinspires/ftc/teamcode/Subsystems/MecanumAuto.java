@@ -1,5 +1,4 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
-public class Trebuchet {
-
+public class MecanumAuto {
 }
