@@ -32,18 +32,38 @@ public class MecanumAuto {
     }
 
     public void drive(double distance_in_inches, double power, Telemetry telemetry) {
-        
+        double ticks = distance_in_inches*COUNTS_PER_MOTOR_REV;
+        motorDrive(rightTop, ticks, power, telemetry);
+        motorDrive(leftBottom, ticks, power, telemetry);
+        motorDrive(rightBottom, ticks, power, telemetry);
+        motorDrive(leftTop, ticks, power, telemetry);
+        jigglypuff();
+        resetEncoders();
     }
 
-    public void tokyoDrift() {
-
+    public void tokyoDrift(double distance_in_inches, double power, Telemetry telemetry) {
+        double ticks = calculatedTicks(distance_in_inches*COUNTS_PER_MOTOR_REV);
+        //Reversed wheels
+        motorDrive(rightTop, ticks, -power, telemetry);
+        motorDrive(leftBottom, ticks, -power, telemetry);
+        //Normal wheels
+        motorDrive(rightBottom, ticks, power, telemetry);
+        motorDrive(leftTop, ticks, power, telemetry);
+        jigglypuff();
+        resetEncoders();
     }
 
-    public void turnTo() {
-
+    public void turnTo(double degrees, double power, Telemetry telemetry) {
+        double ticks = BOT_CIRCUMFERENCE * 1440;
+        motorDrive(rightTop, ticks, power, telemetry);
+        motorDrive(leftBottom, ticks, power, telemetry);
+        motorDrive(rightBottom, ticks, power, telemetry);
+        motorDrive(leftTop, ticks, power, telemetry);
+        jigglypuff();
+        resetEncoders();
     }
 
-    public double calculatedTicks(int distance) {
+    public double calculatedTicks(double distance) {
         return distance * Math.sqrt(2);
     }
 
