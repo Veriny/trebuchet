@@ -16,9 +16,11 @@ public class Trebuchet {
 
 
     public void control(Gamepad gp){
-        if (gp.left_bumper) {
-            launch();
-        }
+//        if (gp.left_bumper) {
+//            launch();
+//        }
+        catapult.setPower(gp.left_trigger);
+        rack.setPower(gp.right_trigger);
 
     }
 
